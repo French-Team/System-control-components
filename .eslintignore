@@ -1,0 +1,9 @@
+# Ignorer les dossiers de build et dépendances
+node_modules/
+dist/
+build/
+
+# Ne pas ignorer les fichiers source
+!src/
+!src/**/*.ts
+!src/**/*.tsx 

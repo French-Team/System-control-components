@@ -1,0 +1,14 @@
+---
+description: Observateur : vous devez suivre les informations dans le terminal de l'utilisateur
+globs: 
+---
+
+# vous devez suivre les informations dans le terminal de l'utilisateur
+    - vous avez mise en place avec l'utilisateur une commande pour :
+        - eslint
+        - prettier
+        - tests
+    - les commandes sont en mode watch, corrections 'auto', tests lancer en 'auto'
+    - vous devez consulter le terminal apres chaque modification
+    - les tests seront lancés, vous devez corriger les erreurs en temps reel.
+

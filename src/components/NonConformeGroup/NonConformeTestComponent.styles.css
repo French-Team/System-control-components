@@ -1,0 +1,14 @@
+/* NonConformeTestComponent.styles.css */
+/* Ce fichier est intentionnellement non conforme pour déclencher les alertes du système */
+
+.non-conforme-container {
+  display: block; /* Erreur : devrait être 'flex' */
+  background-color: #ff0000; /* Erreur : couleur en dur, utiliser des variables CSS */
+  width: 100px; /* Erreur : dimension fixe en pixels, utilisation de variables ou unités relatives attendue */
+  margin: 20px; /* Erreur : marges codées en dur, doit utiliser des variables de spacing */
+  padding: 10px; /* Erreur : padding codé en dur, utilisation de variables attendue */
+  transition: all 1s; /* Erreur : transition longue à éviter */
+  cursor: default; /* Erreur : usage non recommandé pour l'interaction utilisateur */
+  overflow: visible; /* Erreur : overflow visible, à éviter */
+}
+

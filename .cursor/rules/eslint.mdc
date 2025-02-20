@@ -1,0 +1,15 @@
+---
+description: on as des erreurs ESLINT ?
+globs: 
+---
+
+# Your rule content
+
+- vous devez lancer " npm run lint "  pour resoudre les erreurs dans le code.
+si vous ne pouvais pas resoudre les erreurs : 
+- vous devez formuler une serie de 5 questions pour vous aider à corriger les erreurs sans en générer d'autres.
+- vous devez repondre à vos questions et vous demander si vous avez assez d'informations pour resoudre les erreurs.
+- vos réponses ont provoqué une autre suite de questions importantes ! 
+- vous refaite une liste des questions pour definir votre TODO list.
+- vous ecrivez et suivez votre TODO dans l'ordre pour finaliser vos actions et corrections dans le code.
+- quand vous avez corrigé les erreurs, vous relancez la commande pour verifier votre travail.

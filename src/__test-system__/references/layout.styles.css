@@ -1,0 +1,103 @@
+.layout-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+  min-height: 400px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+}
+
+.layout-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #e0e0e0;
+}
+
+.layout-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #ffffff;
+}
+
+.layout-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fafafa;
+}
+
+.layout-item {
+  padding: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+.layout-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+/* Styles instables pour les tests */
+.unstable-container {
+  max-width: 800px;
+  padding: 5px;
+  overflow: visible;
+  display: block;
+}
+
+.unstable-header {
+  display: block;
+  width: 90%;
+  padding: 0.5rem;
+}
+
+.unstable-button {
+  padding: 2px;
+  cursor: default;
+  transition: all 1s;
+}
+
+.unstable-content {
+  display: block;
+  gap: 0.1rem;
+  padding: 0;
+  width: 95%;
+}
+
+.unstable-item {
+  padding: 0.2rem;
+  width: 98%;
+}
+
+.unstable-overlay {
+  position: fixed;
+  z-index: -1;
+  padding: 0;
+}
