@@ -1,0 +1,41 @@
+---
+description: analyser le contenu des rapports présents dans un dossier pour en extraire des informations pertinentes, identifier des tendances, ou répondre à des questions spécifiques.
+globs: *.md
+---
+
+# Préparation
+
+Collecte des Rapports : Assurez-vous que tous les rapports pertinents sont présents dans le dossier.
+Objectifs de l'Analyse : Définissez clairement ce que vous cherchez à accomplir avec cette analyse (par exemple, identifier des tendances, comparer des données, etc.).
+
+# Exploration Initiale
+
+Lecture Rapide : Parcourez rapidement chaque rapport pour avoir une idée générale de leur contenu.
+Identification des Sections Clés : Notez les sections ou les éléments récurrents dans les rapports (par exemple, résumés exécutifs, tableaux de données, conclusions).
+
+# Extraction des Données
+
+Données Quantitatives : Extrayez les données numériques pertinentes (par exemple, chiffres de vente, pourcentages, statistiques).
+Données Qualitatives : Notez les informations textuelles importantes (par exemple, commentaires, recommandations, conclusions).
+
+# Analyse des Données
+
+Comparaison : Comparez les données entre les différents rapports pour identifier des similitudes ou des différences.
+Tendances : Recherchez des tendances ou des motifs récurrents dans les données.
+Anomalies : Identifiez les anomalies ou les valeurs aberrantes qui pourraient nécessiter une investigation plus approfondie.
+
+# Synthèse des Informations
+
+Résumé : Rédigez un résumé des principales conclusions et des points clés identifiés dans les rapports.
+Visualisation : Créez des graphiques ou des tableaux pour visualiser les données et faciliter leur compréhension.
+
+# Rapport Final
+
+Rédaction : Compilez vos conclusions et recommandations dans un rapport final.
+Revue : Relisez le rapport pour vous assurer qu'il est clair, concis, et qu'il répond aux objectifs de l'analyse.
+
+# Exemple de Questions à Se Poser
+Quels sont les principaux indicateurs de performance mentionnés dans les rapports ?
+Y a-t-il des recommandations récurrentes dans les différents rapports ?
+Les données montrent-elles une tendance à la hausse ou à la baisse ?
+Quels sont les points forts et les points faibles identifiés dans les rapports ?

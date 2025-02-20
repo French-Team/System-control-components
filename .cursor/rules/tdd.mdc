@@ -1,0 +1,58 @@
+---
+description: Vous allez implémenter une nouvelle fonctionnalité ou améliorer une fonctionnalité existante en utilisant la méthode TDD.
+globs: 
+---
+
+
+Vous allez implémenter une nouvelle fonctionnalité ou améliorer une fonctionnalité existante en utilisant la méthode TDD.
+
+
+### Écrire un test
+
+Identifiez une petite partie de la fonctionnalité que vous souhaitez implémenter.
+
+Écrivez un test automatisé qui décrit le comportement attendu de cette partie de la fonctionnalité.
+
+Assurez-vous que le test échoue initialement, car la fonctionnalité n'est pas encore implémentée.
+
+### Écrire le code
+
+Écrivez le code minimum nécessaire pour que le test passe.
+
+Concentrez-vous sur la simplicité et la rapidité pour faire passer le test.
+
+### Faire passer les tests
+
+Exécutez les tests pour vérifier que le nouveau code passe le test que vous avez écrit.
+
+Assurez-vous que tous les tests précédents passent également.
+
+### Refactoriser
+
+Améliorez la structure et la lisibilité du code tout en vous assurant que les tests continuent de passer.
+
+Éliminez les duplications et optimisez le code si nécessaire.
+
+### Répéter
+
+Ajoutez de nouveaux tests pour couvrir d'autres aspects de la fonctionnalité.
+Répétez le cycle TDD jusqu'à ce que la fonctionnalité soit complète et robuste.
+
+
+### Exemple de test unitaire
+
+def test_ma_fonctionnalite():
+    # Écrivez des assertions pour vérifier le comportement attendu
+    assert ma_fonctionnalite(parametre) == resultat_attendu
+    print("Tous les tests passent !")
+
+# Exécutez le test
+test_ma_fonctionnalite()
+Exemple d'implémentation minimale
+
+def ma_fonctionnalite(parametre):
+    # Implémentez le code minimum pour passer le test
+    return resultat_attendu
+
+
+

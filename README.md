@@ -1,10 +1,13 @@
 # 🎯 Système de Contrôle des Composants
 
 <div align="center">
+  <img src="public/logique2.jpg" alt="Architecture Logique" width="800"/>
+  <p><em>Architecture logique du système de contrôle</em></p>
+</div>
+<div align="center">
   <img src="public/logique.jpg" alt="Architecture Logique" width="800"/>
   <p><em>Architecture logique du système de contrôle</em></p>
 </div>
-
 ## 📋 Vue d'ensemble
 
 Ce système de contrôle des composants est conçu pour assurer la qualité et la conformité des composants React dans notre application. Il surveille en temps réel les modifications et vérifie automatiquement le respect des bonnes pratiques.

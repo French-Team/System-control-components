@@ -1,8 +1,4 @@
 import { ObserverModule } from '../core/Observer';
-import { ComponentsModule } from './components';
-import { StructureModule } from './structure';
-import { StylesModule } from './styles';
-import { StartupModule } from './demarrage';
 
 export class ModulesManager {
   private static instance: ModulesManager;
@@ -20,17 +16,16 @@ export class ModulesManager {
   }
 
   private initializeModules(): void {
-    // Initialisation des modules principaux
-    const startupModule = new StartupModule();
-    const componentsModule = new ComponentsModule();
-    const structureModule = new StructureModule();
-    const stylesModule = new StylesModule();
+    // Création du module d'analyse unifié
+    const analyzerModule: ObserverModule = {
+      id: 'analyzer',
+      name: "Module d'Analyse Unifié",
+      rules: [],
+      isEnabled: true,
+    };
 
-    // Enregistrement des modules
-    this.registerModule(startupModule.getModule());
-    this.registerModule(componentsModule.getModule());
-    this.registerModule(structureModule.getModule());
-    this.registerModule(stylesModule.getModule());
+    // Enregistrement du module
+    this.registerModule(analyzerModule);
   }
 
   public registerModule(module: ObserverModule): void {

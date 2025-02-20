@@ -1,6 +1,6 @@
 # Guide de Création d'un Nouveau Module
 
-Ce guide détaille la procédure à suivre pour créer un nouveau module conforme aux standards de notre application. Il fait référence aux bonnes pratiques définies dans `src/__test-system__/guide.md`.
+Ce guide détaille la procédure à suivre pour créer un nouveau module conforme aux standards de notre application. Il fait référence aux bonnes pratiques définies dans `../__test-system__/guide.md`.
 
 ## 1. Structure des Fichiers
 
@@ -28,16 +28,12 @@ export default function MonModule() {
       <header data-testid="stable-header">
         <h1>Titre du Module</h1>
       </header>
-      
-      <button data-testid="stable-button">
-        Action Principale
-      </button>
-      
+
+      <button data-testid="stable-button">Action Principale</button>
+
       <section data-testid="stable-content">
         <div data-testid="stable-item-row">
-          <div data-testid="stable-item-column">
-            Contenu du Module
-          </div>
+          <div data-testid="stable-item-column">Contenu du Module</div>
         </div>
       </section>
     </div>
@@ -51,8 +47,12 @@ export default function MonModule() {
 // Structure non conforme à éviter
 export default function MonModule() {
   return (
-    <div className="container">      {/* ❌ Pas de data-testid */}
-      <div>                         {/* ❌ Structure non standardisée */}
+    <div className="container">
+      {' '}
+      {/* ❌ Pas de data-testid */}
+      <div>
+        {' '}
+        {/* ❌ Structure non standardisée */}
         Contenu non structuré
       </div>
     </div>
@@ -88,13 +88,13 @@ export default function MonModule() {
 ```css
 /* Styles à ne pas utiliser */
 .container {
-  display: block;              /* ❌ Utiliser flex */
-  background-color: #ffffff;   /* ❌ Pas de couleurs en dur */
-  width: 300px;               /* ❌ Pas de dimensions fixes */
-  padding: 20px;              /* ❌ Pas de valeurs en dur */
-  transition: all 1s;         /* ❌ Pas de transitions longues */
-  cursor: default;            /* ❌ Éviter cursor: default */
-  overflow: visible;          /* ❌ Gérer l'overflow explicitement */
+  display: block; /* ❌ Utiliser flex */
+  background-color: #ffffff; /* ❌ Pas de couleurs en dur */
+  width: 300px; /* ❌ Pas de dimensions fixes */
+  padding: 20px; /* ❌ Pas de valeurs en dur */
+  transition: all 1s; /* ❌ Pas de transitions longues */
+  cursor: default; /* ❌ Éviter cursor: default */
+  overflow: visible; /* ❌ Gérer l'overflow explicitement */
 }
 ```
 
@@ -107,7 +107,7 @@ import MonModule from './MonModule';
 describe('MonModule', () => {
   it('devrait rendre tous les éléments requis', () => {
     render(<MonModule />);
-    
+
     // Vérification des data-testid requis
     expect(screen.getByTestId('stable-container')).toBeInTheDocument();
     expect(screen.getByTestId('stable-header')).toBeInTheDocument();
@@ -130,11 +130,13 @@ export { default } from './MonModule';
 Avant de commiter votre nouveau module, vérifiez que :
 
 1. **Structure**
+
    - [ ] Tous les fichiers requis sont présents
    - [ ] Les data-testid sont correctement implémentés
    - [ ] La hiérarchie des composants est respectée
 
 2. **Styles**
+
    - [ ] Utilisation de variables CSS pour les couleurs
    - [ ] Pas de valeurs en dur (couleurs, dimensions, espacements)
    - [ ] Support des thèmes (light/dark) implémenté
@@ -146,7 +148,8 @@ Avant de commiter votre nouveau module, vérifiez que :
 
 ## Système de Surveillance
 
-Le système de surveillance (`src/__test-system__/surveillance-system.ts`) vérifiera automatiquement :
+Le système de surveillance (`../__test-system__/scripts/watch.ts`) vérifiera automatiquement :
+
 - La présence des fichiers requis
 - La conformité de la structure (data-testid)
 - Les bonnes pratiques de style
@@ -155,11 +158,13 @@ Le système de surveillance (`src/__test-system__/surveillance-system.ts`) véri
 ## En Cas d'Erreur
 
 Si le système détecte des non-conformités :
-1. Consultez les rapports générés dans `src/__test-system__/__reports__/`
+
+1. Consultez les rapports générés dans `../__test-system__/__reports__/`
 2. Corrigez les problèmes signalés
-3. Référez-vous à `guide.md` pour plus de détails sur les standards
+3. Référez-vous au guide des standards pour plus de détails
 
 ## Ressources
 
-- [Guide Complet des Standards](../src/__test-system__/guide.md)
-- [reference des bonnes pratiques](../src/__test-system__/references)
+- [Guide Complet des Standards](../__test-system__/guide.md)
+- [Notes d'amélioration](../__test-system__/amelioration-notes.md)
+- [Documentation du système de surveillance](../__test-system__/scripts/watch.ts)

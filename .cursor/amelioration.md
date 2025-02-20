@@ -2,15 +2,12 @@
 
 ## TRÈS IMPORTANT - La Méthode des Petits Cailloux 🪨
 
-<<<<<<< HEAD
 ## Rappels Essentiels ⭐
 1. **TOUJOURS** laisser des traces de votre analyse
 2. **DOCUMENTER** votre raisonnement
 3. **BALISER** votre progression
 4. **NETTOYER** vos traces temporaires à la fin 
 
-=======
->>>>>>> f290d063cbc2469d92b1e46227b33d1846343410
 Comme le Petit Poucet, vous devez laisser des traces de votre passage pour :
 - Ne pas vous perdre dans le code existant
 - Retrouver votre chemin dans les améliorations
