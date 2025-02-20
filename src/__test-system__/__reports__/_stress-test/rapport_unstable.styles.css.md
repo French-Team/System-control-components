@@ -1,5 +1,5 @@
 Rapport d'analyse pour le fichier unstable.styles.css
-Date de l'analyse : 20/02/2025 20:16:49
+Date de l'analyse : 20/02/2025 20:58:52
 
 Analyse des styles :
 Propriété: Doit contenir le data-testid 'stable-container' - Non conforme - Ligne: inconnue - Détails: Non conforme: Doit contenir le data-testid 'stable-container' doit être présent.
