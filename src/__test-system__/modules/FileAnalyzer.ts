@@ -1,7 +1,8 @@
 import * as fs from 'fs';
-import path from 'path';
+import * as path from 'path';
 import crypto from 'crypto';
 import { reportManager } from './ReportManager';
+import { validateStyles } from './StyleRules';
 
 interface ComponentAnalysis {
   testAnalysis: TestAnalysis;
@@ -192,12 +193,13 @@ async function analyzeTests(componentDir: string, files: string[]): Promise<Test
     return acc + elements;
   }, 0);
 
+  // Obtenir la liste unique des éléments testés
+  const uniqueTestedElements = new Set(analysis.testCases.flatMap((tc) => tc.coverage));
+
   analysis.coverage = {
     elements: totalElements,
-    testedElements: analysis.testCases.reduce((acc, tc) => acc + tc.coverage.length, 0),
-    percentage: Math.round(
-      (analysis.testCases.reduce((acc, tc) => acc + tc.coverage.length, 0) / totalElements) * 100
-    ),
+    testedElements: uniqueTestedElements.size,
+    percentage: Math.round((uniqueTestedElements.size / totalElements) * 100),
   };
 
   // Suggestions d'amélioration
@@ -286,75 +288,64 @@ async function analyzeStyles(componentDir: string, files: string[]): Promise<Sty
   const styleFiles = files.filter((f) => f.match(/\.styles\.(css|scss)$/));
 
   const analysis: StyleAnalysis = {
-    themeSupport: { hasThemes: false, themes: [], variables: [] },
-    cssVariables: { total: 0, usage: [] },
-    layout: { type: 'other', properties: [] },
-    responsiveness: { hasMediaQueries: false, breakpoints: [] },
+    themeSupport: {
+      hasThemes: false,
+      themes: [],
+      variables: [],
+    },
+    cssVariables: {
+      total: 0,
+      usage: [],
+    },
+    layout: {
+      type: 'flex',
+      properties: [],
+    },
+    responsiveness: {
+      hasMediaQueries: false,
+      breakpoints: [],
+    },
     suggestions: [],
   };
 
+  if (styleFiles.length === 0) {
+    analysis.suggestions.push('Aucun fichier de style trouvé');
+    return analysis;
+  }
+
+  // Validation des règles de style
+  const { valid, issues } = validateStyles(componentDir);
+  if (!valid) {
+    analysis.suggestions.push(...issues);
+  }
+
+  // Analyse du contenu des fichiers de style
   for (const file of styleFiles) {
     const content = fs.readFileSync(path.join(componentDir, file), 'utf-8');
 
     // Analyse du support des thèmes
-    const themes = content.match(/\.theme-[a-z]+/g) || [];
-    const variables = content.match(/var\(--[a-z-]+\)/g) || [];
-
-    analysis.themeSupport = {
-      hasThemes: themes.length > 0,
-      themes: themes.map((t) => t.replace('.theme-', '')),
-      variables: [
-        ...new Set(
-          variables
-            .map((v) => {
-              const match = v.match(/--[a-z-]+/);
-              return match ? match[0] : '';
-            })
-            .filter(Boolean)
-        ),
-      ],
-    };
+    analysis.themeSupport.hasThemes =
+      content.includes('.theme-light') || content.includes('.theme-dark');
+    if (content.includes('.theme-light')) analysis.themeSupport.themes.push('light');
+    if (content.includes('.theme-dark')) analysis.themeSupport.themes.push('dark');
 
     // Analyse des variables CSS
-    analysis.cssVariables = {
-      total: variables.length,
-      usage: analysis.themeSupport.variables.map((v) => ({
-        name: v,
-        occurrences: (content.match(new RegExp(v, 'g')) || []).length,
-      })),
-    };
+    const variables = content.match(/--[a-zA-Z0-9-]+/g) || [];
+    analysis.cssVariables.total = variables.length;
+    analysis.cssVariables.usage = variables.map((v) => ({
+      name: v,
+      occurrences: (content.match(new RegExp(v, 'g')) || []).length,
+    }));
 
-    // Analyse de la mise en page
-    if (content.includes('display: flex')) {
-      analysis.layout.type = 'flex';
-      analysis.layout.properties = content.match(/flex-[a-z]+:[^;]+/g) || [];
-    } else if (content.includes('display: grid')) {
-      analysis.layout.type = 'grid';
-      analysis.layout.properties = content.match(/grid-[a-z]+:[^;]+/g) || [];
-    }
+    // Analyse du layout
+    analysis.layout.type = content.includes('display: flex') ? 'flex' : 'other';
+    const flexProperties = content.match(/flex[a-zA-Z-]+:[^;]+/g) || [];
+    analysis.layout.properties = flexProperties;
 
     // Analyse de la réactivité
-    const mediaQueries = content.match(/@media[^{]+\{/g) || [];
-    analysis.responsiveness = {
-      hasMediaQueries: mediaQueries.length > 0,
-      breakpoints: mediaQueries
-        .map((mq) => {
-          const match = mq.match(/\(([^)]+)\)/);
-          return match ? match[1] : '';
-        })
-        .filter(Boolean),
-    };
-  }
-
-  // Suggestions
-  if (!analysis.themeSupport.hasThemes) {
-    analysis.suggestions.push('Ajouter le support des thèmes (clair/sombre)');
-  }
-  if (!analysis.responsiveness.hasMediaQueries) {
-    analysis.suggestions.push('Ajouter des media queries pour la réactivité');
-  }
-  if (analysis.layout.type === 'other') {
-    analysis.suggestions.push('Utiliser Flexbox ou Grid pour une meilleure mise en page');
+    analysis.responsiveness.hasMediaQueries = content.includes('@media');
+    const breakpoints = content.match(/--breakpoint-[a-zA-Z-]+/g) || [];
+    analysis.responsiveness.breakpoints = breakpoints;
   }
 
   return analysis;

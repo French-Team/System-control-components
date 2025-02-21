@@ -1,0 +1,260 @@
+.stable-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-sizing: border-box;
+  background-color: var(--bg-primary);
+  overflow: hidden;
+}
+
+.stable-header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: calc(var(--spacing-xs) * 0.75);
+  width: 100%;
+  height: 40px;
+  min-height: 40px;
+  box-sizing: border-box;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: var(--font-lg);
+}
+
+.stable-button {
+  position: relative;
+  padding: calc(var(--spacing-xs) * 0.75) var(--spacing-sm);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: var(--bg-content);
+  color: var(--text-primary);
+  font-size: var(--font-sm);
+}
+
+.stable-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  gap: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--bg-content);
+  color: var(--text-primary);
+  font-size: var(--font-md);
+  overflow: hidden;
+}
+
+.stable-item {
+  position: relative;
+  height: calc(50% - 0px);
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+
+.stable-item-content {
+  position: relative;
+  height: 24px;
+  line-height: 24px;
+  font-weight: bold;
+  font-size: var(--font-md);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+  padding: 0 calc(var(--spacing-xs) * 0.5);
+}
+
+.stable-item-children {
+  position: relative;
+  flex: 1;
+  padding: calc(var(--spacing-xs) * 0.5);
+  background-color: var(--bg-secondary);
+  border-radius: 2px;
+  display: flex;
+  gap: calc(var(--spacing-xs) * 0.5);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.stable-item-row .stable-item-children {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.stable-item-column .stable-item-children {
+  flex-direction: column;
+}
+
+.stable-item-child {
+  position: relative;
+  padding: calc(var(--spacing-xs) * 0.5);
+  background-color: var(--bg-content);
+  border-radius: 2px;
+  flex: 1 1 calc(50% - var(--spacing-xs) * 0.25);
+  min-width: 100px;
+  max-width: calc(50% - var(--spacing-xs) * 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-xs) * 0.25);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.stable-child-content {
+  position: relative;
+  height: 20px;
+  line-height: 20px;
+  font-weight: 500;
+  font-size: var(--font-sm);
+  color: var(--text-primary);
+  padding: 0 calc(var(--spacing-xs) * 0.25);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.stable-child-items {
+  position: relative;
+  display: flex;
+  flex: 1;
+  padding: calc(var(--spacing-xs) * 0.25);
+  gap: calc(var(--spacing-xs) * 0.25);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.stable-child-items.row {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.stable-child-items.column {
+  flex-direction: column;
+}
+
+.stable-child-item {
+  position: relative;
+  background-color: var(--bg-secondary);
+  border-radius: 2px;
+  padding: calc(var(--spacing-xs) * 0.25);
+  flex: 1 1 calc(50% - var(--spacing-xs) * 0.25);
+  min-width: 100px;
+  max-width: calc(50% - var(--spacing-xs) * 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-xs) * 0.25);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.stable-item-title {
+  position: relative;
+  height: 18px;
+  line-height: 18px;
+  font-weight: 500;
+  font-size: var(--font-xs);
+  color: var(--text-primary);
+  padding: 0 calc(var(--spacing-xs) * 0.25);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.stable-item-subitems {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: calc(var(--spacing-xs) * 0.25);
+  gap: calc(var(--spacing-xs) * 0.25);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.stable-subitem {
+  position: relative;
+  height: 16px;
+  line-height: 16px;
+  font-size: calc(var(--font-xs) * 0.9);
+  background-color: var(--bg-content);
+  padding: 0 calc(var(--spacing-xs) * 0.25);
+  border-radius: 2px;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.stable-subitem:hover {
+  background-color: var(--bg-primary);
+  color: var(--text-accent);
+}
+
+.stable-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.stable-overlay-content {
+  background-color: var(--bg-primary);
+  padding: var(--spacing-md);
+  border-radius: 8px;
+  position: relative;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.stable-close-button {
+  position: absolute;
+  top: var(--spacing-xs);
+  right: var(--spacing-xs);
+  background: none;
+  border: none;
+  font-size: var(--font-lg);
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.stable-close-button:hover {
+  color: var(--text-secondary);
+  transform: scale(1.1);
+}

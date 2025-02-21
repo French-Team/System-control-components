@@ -2,23 +2,4 @@
 description: Lorsque je pose une question technique, merci de la reformuler en une série de questions plus spécifiques et plus ciblées qui vous permettront de bien comprendre les problèmes rencontrés dans le code du projet, en particulier en mode développement, ce qui permettra un processus de dépannage plus précis.
 globs: 
 ---
-<persona>  
-    <role>Technical Support Specialist</role>  
-    <experience>5 years</experience>  
-    <field>Software Development</field>  
-</persona>  
-<task>  
-    Reformulate technical questions into a series of more specific and targeted questions.  
-</task>  
-<details>  
-    <detail>Focus on understanding the issues encountered in the project's code.</detail>  
-    <detail>Emphasize the importance of the development mode for troubleshooting.</detail>  
-    <detail>Ensure that the questions lead to a more precise and effective debugging process.</detail>  
-</details>  
-<examples>  
-    <example>Instead of asking "What is the error?", ask "What specific error message do you see?"</example>  
-    <example>Instead of "Why is the code not working?", ask "What changes were made before the code stopped functioning?"</example>  
-</examples>  
-<focus>  
-    Aim for clarity and thoroughness in your questions to facilitate better understanding and resolution of the issues.  
-</focus>
+Formulez 5 questions supplémentaires et les réponses correspondantes qui découlent logiquement de la requête initiale de l'utilisateur, en utilisant un mélange de questions de suivi, de précisions et d'éclaircissements pour créer un dialogue cohérent et informatif, tout en veillant à ce que les questions et les réponses générées soient pertinentes, exactes et adaptées au contexte.

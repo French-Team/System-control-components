@@ -1,0 +1,114 @@
+/* Variables spécifiques au ThemeSelector */
+:root {
+  /* Espacements */
+  --theme-selector-gap: calc(var(--spacing-small) * 0.25);
+  --theme-selector-padding: calc(var(--spacing-small) * 0.25);
+
+  /* Dimensions */
+  --theme-selector-button-size-desktop: clamp(24px, calc(100% / 3), 32px);
+  --theme-selector-button-size-tablet: clamp(20px, calc(100% / 4), 28px);
+  --theme-selector-button-size-mobile: clamp(18px, calc(100% / 5), 24px);
+
+  /* Points de rupture */
+  --theme-selector-breakpoint-tablet: var(--breakpoint-tablet);
+  --theme-selector-breakpoint-mobile: var(--breakpoint-mobile);
+
+  /* Bordures */
+  --theme-selector-border-radius: calc(var(--border-radius) * 0.75);
+
+  /* Z-index */
+  --theme-selector-z-index: 1;
+
+  /* Couleurs */
+  --theme-selector-bg-light: var(--content-bg, #ffffff);
+  --theme-selector-bg-dark: var(--header-bg, #2d2d2d);
+  --theme-selector-text-light: var(--color-dark-bg, #1a1a1a);
+  --theme-selector-text-dark: var(--color-light-content, #ffffff);
+  --theme-selector-border-color: var(--text-color, #333333);
+  --theme-selector-hover-shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Layout de base */
+[class^='theme-selector'] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.theme-selector-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--theme-selector-gap);
+  width: 100%;
+  height: 100%;
+}
+
+.theme-selector-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--theme-selector-button-size-desktop);
+  height: var(--theme-selector-button-size-desktop);
+  min-width: var(--theme-selector-button-size-desktop);
+  min-height: var(--theme-selector-button-size-desktop);
+  border: none;
+  border-radius: var(--theme-selector-border-radius);
+  background-color: var(--theme-selector-bg-light);
+  color: var(--theme-selector-text-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: clamp(14px, calc(100% / 4), 18px);
+  padding: var(--theme-selector-padding);
+  z-index: var(--theme-selector-z-index);
+}
+
+.theme-selector-button:hover {
+  transform: scale(1.05);
+  background-color: var(--theme-selector-bg-dark);
+  box-shadow: 0 2px 4px var(--theme-selector-hover-shadow);
+}
+
+.theme-selector-button.active {
+  background-color: var(--theme-selector-bg-dark);
+  box-shadow: 0 0 0 1px var(--theme-selector-border-color);
+  color: var(--theme-selector-text-dark);
+}
+
+/* Support des thèmes */
+.theme-light .theme-selector-button {
+  color: var(--theme-selector-text-light);
+  background-color: var(--theme-selector-bg-light);
+}
+
+.theme-dark .theme-selector-button {
+  color: var(--theme-selector-text-dark);
+  background-color: var(--theme-selector-bg-dark);
+}
+
+/* Media Queries */
+@media screen and (max-width: var(--theme-selector-breakpoint-tablet)) {
+  .theme-selector-button {
+    width: var(--theme-selector-button-size-tablet);
+    height: var(--theme-selector-button-size-tablet);
+    min-width: var(--theme-selector-button-size-tablet);
+    min-height: var(--theme-selector-button-size-tablet);
+    font-size: clamp(12px, calc(100% / 5), 16px);
+  }
+}
+
+@media screen and (max-width: var(--theme-selector-breakpoint-mobile)) {
+  .theme-selector-container {
+    padding: var(--theme-selector-padding);
+  }
+
+  .theme-selector-button {
+    width: var(--theme-selector-button-size-mobile);
+    height: var(--theme-selector-button-size-mobile);
+    min-width: var(--theme-selector-button-size-mobile);
+    min-height: var(--theme-selector-button-size-mobile);
+    font-size: clamp(10px, calc(100% / 6), 14px);
+  }
+}

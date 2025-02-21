@@ -1,0 +1,19 @@
+---
+description:  À chaque fois que vous me demanderez d'ajouter une bonne pratique :
+globs: *.md
+---
+
+- Je vais d'abord analyser les fichiers dans le dossier @bonne-pratiques pour comprendre comment la pratique est implémentée
+
+- Je créerai une nouvelle section en haut du guide (juste après le titre principal)
+
+- Je m'assurerai que cette section reflète fidèlement l'implémentation trouvée dans les fichiers de référence
+
+
+- Par exemple, si vous me dites "ajouter une bonne pratique sur la gestion des overlays", je vais :
+
+- Examiner comment c'est fait dans StableLayout.tsx et ses fichiers associés
+ - Créer une nouvelle section en haut du guide
+ - Vous montrer la modification pour validation
+
+Je suis prêt à ajouter de nouvelles bonnes pratiques selon vos instructions.

@@ -1,0 +1,14 @@
+---
+description: vous devez ameliorer le composant actuel.
+globs: *.tsx, *.css, *.md
+---
+
+# si vous avez des améliorations a faire pour l'utilisateur.
+ - vous devez ecrire les tests (methode TDD).
+ - lancer & valider vos tests.
+
+# quand vos tests sont validés, 
+  - vous devez :  
+    - mettre a jour src\__test-system__\guide.md
+    - mettre a jour __test-system__  qui doit inclure ces regles dans ces controles en utilisant la methode TDD.
+    - lancer & valider vos tests.

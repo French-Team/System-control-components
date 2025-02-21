@@ -27,44 +27,193 @@ Tout manquement à cette liste sera systématiquement signalé par le système d
 
 ## 3. Styles et Mise en Forme
 
-Les styles des composants doivent respecter strictement le modèle par défaut :
+### 3.1 Organisation des Variables CSS
 
-- Utiliser `display: flex` pour la mise en page afin d'assurer une disposition fluide et adaptative.
-- Gérer systématiquement les espacements :
-  - Les marges (margin) doivent être définies de manière cohérente.
-  - Les espacements internes (padding) doivent être harmonisés.
-  - Utiliser le gap pour définir les espaces entre les éléments.
-- Les valeurs des margin, padding et gap doivent être définies via des variables CSS (par exemple, `var(--spacing-small)`, `var(--spacing-medium)`, etc.) dans le système de thèmes (fichiers `theme-config.ts` ou `theme.css`). Toute valeur numérique fixe sera signalée.
-- Recourir aux variables CSS (ex : `var(--nom-de-variable)`) pour définir les couleurs et autres propriétés graphiques afin d'assurer flexibilité et cohérence.
-- Les couleurs utilisées doivent provenir d'un système centralisé, interdisant l'usage de couleurs en dur.
-- Appliquer rigoureusement une classe de thème (`theme-light` ou `theme-dark`) en fonction du contexte d'affichage.
+Les variables CSS doivent être organisées par catégories dans `:root` :
 
-## 4. Hiérarchie et Dimensionnement
+```css
+:root {
+  /* Espacements */
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
 
-L'organisation interne des composants doit respecter une structure hiérarchique claire :
+  /* Dimensions */
+  --header-height: 100px;
+  --footer-height: calc(var(--header-height) / 2);
 
-- Le conteneur principal (`stable-container`) sert de référence pour l'ensemble de la structure.
-- Les sous-éléments (lignes et colonnes) doivent être utilisés pour structurer le contenu de manière logique.
-- Les dimensions, alignements et espacements (margin, padding, gap) doivent être définis selon des standards stricts, garantissant une présentation uniforme et esthétiquement cohérente.
+  /* Points de rupture */
+  --breakpoint-tablet: 768px;
+  --breakpoint-mobile: 480px;
 
-## 5. Pratiques de Nomination et Accessibilité
+  /* Bordures */
+  --border-radius: 8px;
 
-Pour améliorer la maintenabilité et l'accessibilité des composants :
+  /* Z-index */
+  --z-index-header: 1000;
 
-- Utiliser des noms explicites et normalisés pour les classes CSS et les attributs `data-testid`.
-- Concevoir les composants de façon à faciliter leur identification lors des tests automatisés.
-- Intégrer des attributs ARIA et autres pratiques d'accessibilité pour optimiser l'expérience utilisateur sur tous les types d'appareils.
+  /* Couleurs */
+  --color-light-bg: #f5f5f5;
+  --color-dark-bg: #1a1a1a;
+  /* etc... */
+}
+```
 
-## 6. Validation et Surveillance Automatique
+### 3.2 Règles Flex par Défaut
 
-Le système de surveillance vérifie chaque composant selon le modèle par défaut et signalera toute déviation, notamment :
+Tous les éléments de layout doivent suivre ces règles par défaut :
 
-- L'absence d'un élément obligatoire dans la structure ou d'un fichier requis.
-- Toute déviation sur les règles CSS, telles que l'utilisation incorrecte de `display`, l'emploi de valeurs en dur pour les couleurs, ou des espacements (margin, padding, gap) non conformes aux variables définies.
-- L'inadéquation par rapport aux conventions de nommage et d'accessibilité.
-- Toute autre pratique qui ne respecte pas strictement le modèle par défaut.
+```css
+[class^='layout-'] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+```
 
-Ces contrôles sont réalisés automatiquement afin d'assurer la qualité et l'uniformité de tous les composants du projet.
+Exceptions :
+
+- Les éléments à hauteur fixe (header, footer) doivent utiliser `flex: none`
+- Les éléments nécessitant une direction spécifique doivent surcharger avec `flex-direction`
+
+### 3.3 Thèmes et Couleurs
+
+- Utiliser les variables CSS pour toutes les couleurs
+- Appliquer les classes `theme-light` ou `theme-dark`
+- Définir les couleurs dans le thème et non directement dans les composants
+
+### 3.4 Calculs des Tailles Adaptatives
+
+Les tailles des éléments doivent être calculées de manière à garantir une lisibilité optimale sur tous les écrans :
+
+#### Texte
+
+```css
+/* Utilisation de clamp() pour le texte */
+:root {
+  /* Tailles de base avec limites min/max */
+  --font-size-base: clamp(14px, 2vw, 16px);
+  --font-size-small: clamp(12px, 1.8vw, 14px);
+  --font-size-large: clamp(16px, 2.2vw, 18px);
+  --font-size-header: clamp(16px, 2.5vw, 20px);
+}
+
+/* Exemple d'application */
+.text-element {
+  font-size: clamp(12px, 2vw, var(--font-size-base));
+}
+
+/* Pour les titres */
+.title-element {
+  font-size: clamp(14px, 2.5vw, var(--font-size-header));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* En mobile, permettre le retour à la ligne */
+@media screen and (max-width: var(--breakpoint-mobile)) {
+  .title-element {
+    white-space: normal;
+    word-wrap: break-word;
+  }
+}
+```
+
+#### Icônes et Éléments Interactifs
+
+```css
+/* Tailles proportionnelles avec limites min/max */
+.interactive-element {
+  width: clamp(24px, calc(100% / 3), 32px);
+  height: clamp(24px, calc(100% / 3), 32px);
+  font-size: clamp(14px, calc(100% / 4), 18px);
+}
+
+/* Adaptation tablette */
+@media screen and (max-width: var(--breakpoint-tablet)) {
+  .interactive-element {
+    width: clamp(20px, calc(100% / 4), 28px);
+    height: clamp(20px, calc(100% / 4), 28px);
+    font-size: clamp(12px, calc(100% / 5), 16px);
+  }
+}
+
+/* Adaptation mobile */
+@media screen and (max-width: var(--breakpoint-mobile)) {
+  .interactive-element {
+    width: clamp(18px, calc(100% / 5), 24px);
+    height: clamp(18px, calc(100% / 5), 24px);
+    font-size: clamp(10px, calc(100% / 6), 14px);
+  }
+}
+```
+
+#### Règles Générales pour les Calculs Adaptatifs
+
+1. **Utilisation de `clamp()`**
+
+   - Toujours définir une taille minimale en pixels
+   - Utiliser une valeur relative (vw, %) pour l'adaptation
+   - Définir une taille maximale pour éviter les débordements
+
+2. **Proportions**
+
+   - Calculer les tailles en fonction du conteneur avec `calc()`
+   - Maintenir des ratios cohérents entre les éléments
+   - Adapter les proportions selon les breakpoints
+
+3. **Accessibilité**
+
+   - Ne jamais descendre sous 12px pour le texte standard
+   - Assurer un contraste suffisant à toutes les tailles
+   - Prévoir le comportement du texte long (ellipsis, wrap)
+
+4. **Performance**
+   - Privilégier les unités relatives (rem, em, %) quand possible
+   - Éviter les calculs trop complexes
+   - Utiliser les variables CSS pour la cohérence
+
+## 4. Accessibilité
+
+Chaque composant doit inclure :
+
+- Des rôles ARIA appropriés (`role="main"`, `role="banner"`, etc.)
+- Des labels ARIA descriptifs (`aria-label`)
+- Une structure sémantique claire (header, main, footer)
+- Une hiérarchie de titres logique
+
+## 5. Tests
+
+Les tests doivent couvrir :
+
+- La présence de tous les éléments avec leurs `data-testid`
+- La structure sémantique et la hiérarchie
+- Les attributs d'accessibilité
+- Les classes CSS et styles appropriés
+- La réactivité et le comportement responsive
+
+## 6. Réactivité
+
+Implémenter la réactivité via :
+
+- Des media queries utilisant les variables de points de rupture
+- Des ajustements de taille appropriés pour chaque breakpoint
+- Des modifications de layout pour les petits écrans
+- Des ajustements d'espacement via les variables CSS
+
+## 7. Validation et Surveillance Automatique
+
+Le système de surveillance vérifie :
+
+- La présence de tous les éléments et fichiers requis
+- La conformité des styles avec les règles flex
+- L'utilisation correcte des variables CSS
+- La présence des attributs d'accessibilité
+- La couverture des tests
 
 ## Conclusion
 

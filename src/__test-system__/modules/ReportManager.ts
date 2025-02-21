@@ -31,6 +31,19 @@ interface StyleAnalysis {
     hasThemes: boolean;
     themes: string[];
   };
+  cssVariables?: {
+    total: number;
+    usage: Array<{ name: string; occurrences: number }>;
+  };
+  layout?: {
+    type: string;
+    properties: string[];
+  };
+  responsiveness?: {
+    hasMediaQueries: boolean;
+    breakpoints: string[];
+  };
+  suggestions?: string[];
 }
 
 interface PresenceAnalysis {
@@ -188,6 +201,8 @@ class ReportManager {
 
   private formatStylesSection(styles: StyleAnalysis): string {
     let content = '';
+
+    // Support des thèmes
     if (styles.themeSupport) {
       content += `### Thèmes\n`;
       content += `- Support: ${styles.themeSupport.hasThemes ? 'Oui' : 'Non'}\n`;
@@ -195,6 +210,51 @@ class ReportManager {
         content += `- Thèmes: ${styles.themeSupport.themes.join(', ')}\n`;
       }
     }
+
+    // Variables CSS
+    if (styles.cssVariables) {
+      content += `\n### Variables CSS\n`;
+      content += `- Total: ${styles.cssVariables.total}\n`;
+      if (styles.cssVariables.usage.length > 0) {
+        content += `- Variables les plus utilisées:\n`;
+        styles.cssVariables.usage
+          .sort((a, b) => b.occurrences - a.occurrences)
+          .slice(0, 5)
+          .forEach(({ name, occurrences }) => {
+            content += `  - ${name}: ${occurrences} fois\n`;
+          });
+      }
+    }
+
+    // Layout
+    if (styles.layout) {
+      content += `\n### Mise en Page\n`;
+      content += `- Type: ${styles.layout.type}\n`;
+      if (styles.layout.properties.length > 0) {
+        content += `- Propriétés:\n`;
+        styles.layout.properties.forEach((prop) => {
+          content += `  - ${prop}\n`;
+        });
+      }
+    }
+
+    // Réactivité
+    if (styles.responsiveness) {
+      content += `\n### Réactivité\n`;
+      content += `- Media Queries: ${styles.responsiveness.hasMediaQueries ? 'Oui' : 'Non'}\n`;
+      if (styles.responsiveness.breakpoints.length > 0) {
+        content += `- Points de rupture: ${styles.responsiveness.breakpoints.join(', ')}\n`;
+      }
+    }
+
+    // Suggestions et problèmes
+    if (styles.suggestions && styles.suggestions.length > 0) {
+      content += `\n### Suggestions d'Amélioration\n`;
+      styles.suggestions.forEach((suggestion) => {
+        content += `- ${suggestion}\n`;
+      });
+    }
+
     return content;
   }
 
