@@ -1,0 +1,79 @@
+/* Ce fichier n'est plus nécessaire car les variables de thème sont maintenant dans LayoutBlocks.styles.css */
+
+/* Variables de thème pour LayoutBlocks */
+:root {
+  /* Calculs de Base */
+  --vw: calc(100vw * 0.01);
+  --vh: calc(100vh * 0.01);
+
+  /* Espacements */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  /* Dimensions */
+  --header-height: calc(var(--vh) * 10);
+  --footer-height: calc(var(--header-height) * 0.5);
+  --header-block-width: calc((100% - (var(--spacing-md) * 4)) / 5);
+  --min-block-width: calc(var(--vw) * 8);
+  --min-block-height: calc(var(--vh) * 4);
+
+  /* Points de rupture */
+  --breakpoint-tablet: calc(var(--vw) * 76.8);
+  --breakpoint-mobile: calc(var(--vw) * 48);
+
+  /* Bordures */
+  --border-radius: 4px;
+
+  /* Z-index */
+  --z-index-header: 1000;
+
+  /* Couleurs de base */
+  --color-light-bg: #f5f5f5;
+  --color-light-element: #e0e0e0;
+  --color-light-content: #ffffff;
+  --color-dark-bg: #1a1a1a;
+  --color-dark-element: #2d2d2d;
+  --color-dark-content: #333333;
+
+  /* Calculs de typographie avancés */
+  --font-size-min: 0.875rem; /* 14px */
+  --font-size-max: 1.5rem; /* 24px */
+
+  /* Calcul adaptatif basé sur la largeur du viewport */
+  --text-scale-ratio: calc((100vw - 320px) / (1200 - 320));
+  --text-scale: calc(
+    var(--font-size-min) + (var(--font-size-max) - var(--font-size-min)) * var(--text-scale-ratio)
+  );
+
+  /* Tailles de police adaptatives */
+  --font-xs: clamp(0.75rem, var(--text-scale), 0.875rem);
+  --font-sm: clamp(0.875rem, var(--text-scale), 1rem);
+  --font-md: clamp(1rem, var(--text-scale), 1.25rem);
+  --font-lg: clamp(1.25rem, var(--text-scale), 1.5rem);
+  --font-xl: clamp(1.5rem, var(--text-scale), 2rem);
+
+  /* Tailles spécifiques */
+  --font-size-base: var(--font-md);
+  --font-header-size: clamp(var(--font-size-min), var(--text-scale), var(--font-size-max));
+}
+
+/* Thème clair */
+.theme-light {
+  --background-color: var(--color-light-bg);
+  --header-bg: var(--color-light-element);
+  --content-bg: var(--color-light-content);
+  --footer-bg: var(--color-light-element);
+  --text-color: var(--color-dark-bg);
+}
+
+/* Thème sombre */
+.theme-dark {
+  --background-color: var(--color-dark-bg);
+  --header-bg: var(--color-dark-element);
+  --content-bg: var(--color-dark-content);
+  --footer-bg: var(--color-dark-element);
+  --text-color: var(--color-light-content);
+}

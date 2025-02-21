@@ -1,0 +1,85 @@
+/* Variables de Base */
+:root {
+  /* Calculs de Base */
+  --vw: calc(100vw * 0.01);
+  --vh: calc(100vh * 0.01);
+
+  /* Espacements */
+  --spacing-base: calc(var(--vw) * 1);
+  --block-gap: calc(var(--spacing-base) * 0.5);
+
+  /* Dimensions des contrôles */
+  --control-height: calc(var(--vh) * 5);
+}
+
+/* Bloc Principal */
+.image-block {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--block-gap);
+  padding: var(--block-gap);
+}
+
+/* Contrôles */
+.image-block__control {
+  height: var(--control-height);
+  min-height: var(--control-height);
+  background-color: var(--header-bg);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  font-size: var(--font-sm);
+}
+
+/* Zone de Contenu - Prend l'espace restant */
+.image-block__content {
+  flex: 1;
+  min-height: 0; /* Important pour que flex: 1 fonctionne correctement */
+  background-color: transparent;
+}
+
+/* Container de l'Image */
+.image-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--content-bg);
+  border-radius: var(--border-radius);
+}
+
+/* Image */
+.responsive-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Media Queries */
+@media screen and (max-width: var(--breakpoint-tablet)) {
+  :root {
+    --control-height: calc(var(--vh) * 4);
+  }
+}
+
+@media screen and (max-width: var(--breakpoint-mobile)) {
+  :root {
+    --control-height: calc(var(--vh) * 3);
+  }
+
+  .image-block {
+    gap: calc(var(--block-gap) * 0.75);
+  }
+}
+
+/* Effets au survol */
+.image-wrapper:hover .responsive-image {
+  transform: scale(1.05);
+}
